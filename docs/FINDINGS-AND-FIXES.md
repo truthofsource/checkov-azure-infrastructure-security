@@ -1,5 +1,7 @@
 # Findings, fixes and evidence
 
+**Terms used here:** A fixture is test data or a test setup used instead of real business records.
+
 The recorded full-source baseline evaluated 508 resources over 228 inputs: 211 checks passed, 106 failed, with no skips or parse errors. Each remaining occurrence retained its next-evidence requirement rather than being silently suppressed.
 
 ### Triage without hiding failures
@@ -14,7 +16,7 @@ The local fixture narrows two storage settings: Shared Key and nested anonymous 
 | Category | Meaning |
 | --- | --- |
 | Dated platform finding record | Actual recorded source-review/scanning history, with its date and limits |
-| Local scanner execution | Genuine run against only the public fixtures, where recorded in Validation |
+| Local scanner execution | Genuine run against only the public test examples, where recorded in Validation |
 | Parser/gate demonstration | Fictional data exercising the actual decision code |
 | Cloud/runtime acceptance | Separate target-specific evidence, not performed for this portfolio |
 

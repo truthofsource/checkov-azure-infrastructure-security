@@ -4,7 +4,7 @@
 | --- | --- |
 | **Early infrastructure feedback** | Inspect Terraform definitions before deployment to catch insecure configuration choices while they are still reviewable source changes. |
 | **Broad built-in control library** | Rule IDs and resource-level evidence organize checks across storage, networking, logging, identity and availability; custom policies can complement built-in controls. |
-| **Actionable triage** | Repeatable resource/file identities, counts and next-evidence tracking support focused remediation without confusing a static finding with live compromise. |
+| **Actionable review and prioritization** | Repeatable resource/file identities, counts and next-evidence tracking support focused remediation without confusing a static finding with live compromise. |
 
 | Limit | Practical response |
 | --- | --- |

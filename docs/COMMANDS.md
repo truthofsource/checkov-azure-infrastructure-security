@@ -1,5 +1,7 @@
 # Commands and expected results
 
+**Terms used here:** A fixture is test data or a test setup used instead of real business records.
+
 ## Standard-library checks
 
 ```bash
