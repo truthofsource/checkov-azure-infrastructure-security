@@ -20,11 +20,11 @@ Use Checkov to examine the Terraform files that describe the cloud resources. Ch
 
 | Strength | Practical value |
 | --- | --- |
-| **Early infrastructure feedback** | Inspect Terraform definitions before deployment to catch insecure configuration choices while they are still reviewable source changes. |
-| **Broad built-in control library** | Rule IDs and resource-level evidence organize checks across storage, networking, logging, identity and availability; custom policies can complement built-in controls. |
-| **Actionable review and prioritization** | Repeatable resource/file identities, counts and next-evidence tracking support focused remediation without confusing a static finding with live compromise. |
+| **Early infrastructure feedback** | Check the cloud setup before deployment, while risky settings can still be changed and reviewed in code. |
+| **Broad built-in control library** | Use built-in rules to check storage, networks, logs, access and reliability. Add custom rules when the organization needs more specific checks. |
+| **Actionable review and prioritization** | Tie each finding to a resource and file, assign follow-up work and record what evidence is needed. A failed rule alone does not prove a system was attacked. |
 
-These strengths describe what this tool contributes to the platform's layered checks. It complements the other scanners; it is not a complete application-security assessment. [Strengths, limits and tradeoffs](docs/STRENGTHS-AND-TRADEOFFS.md).
+This tool covers one part of security. The other scanners check different areas, so the results need to be considered together. [Strengths, limits and tradeoffs](docs/STRENGTHS-AND-TRADEOFFS.md).
 
 ## Architecture
 
@@ -39,16 +39,16 @@ flowchart LR
   Decision --> Review[Review / repair / retest / preserve receipt]
 ```
 
-The exact target and output protections differ by scanner. Checkov 3.3.26 is the selected source pin, not a claim that it is the latest release. [Actual source map](docs/SOURCE-MAP.md).
+Each scanner checks a different kind of information and needs suitable protection for its reports. Checkov 3.3.26 is the selected source pin, not a claim that it is the latest release. [Actual source map](docs/SOURCE-MAP.md).
 
 ## What Was Built
 
 | Component | Purpose | Implementation |
 | --- | --- | --- |
-| Actual scanner wrapper | Preserve the real target/trust/output boundary | [Source](scripts/security_checkov.py) |
-| Original tests that existing behavior still works | Reject incomplete/incorrectly structured evidence and unsafe scope assumptions | [Tests](scripts/) |
-| Pinned scanner configuration | Make selected tooling and policy explicit | [Configuration](security/) |
-| Actual integration reference | Explain the production CI design without activating it here | [Inert workflow](reference/workflows/security-checkov-baseline.yml.example) |
+| Scan script | Check the intended files with trusted tools and protect the report | [Source](scripts/security_checkov.py) |
+| Existing behavior tests | Reject missing or unreadable reports and checks of the wrong files | [Tests](scripts/) |
+| Fixed scanner version and settings | Record the tool version and the rules used | [Configuration](security/) |
+| Real pipeline example | Show how the real pipeline runs checks, without running it here | [Inert workflow](reference/workflows/security-checkov-baseline.yml.example) |
 | Platform findings | Preserve dated fixes and remaining work | [Recorded findings](data/platform-findings.json) |
 | Offline example/viewer | Exercise actual parsing/decision code with fictional inputs | [Example](scripts/demo.py) |
 
@@ -94,8 +94,8 @@ Open [the local reference](http://127.0.0.1:8138). It shows strengths, actual pa
 
 | Boundary | What it means |
 | --- | --- |
-| Static context is incomplete | External/omitted modules, variable resolution and modern alternative controls can require further evidence. |
-| Finding is not exploitability | A failed rule may represent cost/availability policy or a missing static graph relationship, not proven compromise. |
+| Static context is incomplete | Missing modules, values supplied elsewhere or different ways of meeting a rule may need additional checks. |
+| Finding is not exploitability | A failed rule may concern cost, reliability or information the scanner cannot see. It is not proof that a system was compromised. |
 | Advisory is not approval | This actual wrapper uses soft-fail for findings; execution, version, parse and coverage errors still fail. It is not a release security gate. |
 
 The reference workflow is manual-only. Actual platform integration examples are inert files outside .github/workflows. No hosted CI run or deployment was performed to create this project. Do not execute candidate package scripts or expose raw secret candidates while adding security checks.
@@ -107,10 +107,10 @@ The reference workflow is manual-only. Actual platform integration examples are 
 | [Strengths and tradeoffs](docs/STRENGTHS-AND-TRADEOFFS.md) | Why this scanner, where it helps and where it stops |
 | [Process and integration](docs/PROCESS.md) | Scope, trust, completion and CI decisions |
 | [Findings and fixes](docs/FINDINGS-AND-FIXES.md) | Recorded results versus local examples |
-| [Commands](docs/COMMANDS.md) | Reproducible local checks and scanner invocation |
-| [Operations](docs/OPERATIONS.md) | Failure handling, privacy and review and prioritization |
-| [Scaling](docs/SCALING.md) | Scope selection, caches, budgets and access |
-| [Source map](docs/SOURCE-MAP.md) | Actual source and explicit adaptations |
-| [Validation](docs/VALIDATION.md) | Observed local outcomes and limits |
+| [Commands](docs/COMMANDS.md) | Commands to repeat the local checks and start the scanner |
+| [Operations](docs/OPERATIONS.md) | Handle failures, protect private data and prioritize findings |
+| [Scaling](docs/SCALING.md) | Choose what to scan and manage time, cost and access |
+| [Source map](docs/SOURCE-MAP.md) | Where the code came from and what changed for this example |
+| [Validation](docs/VALIDATION.md) | Local test results and their limits |
 
 Related projects: [Trivy](https://github.com/truthofsource/trivy-vulnerability-management), [TruffleHog](https://github.com/truthofsource/trufflehog-secret-detection), [Checkov](https://github.com/truthofsource/checkov-azure-infrastructure-security), and [delivery/rollback](https://github.com/truthofsource/secure-container-delivery-and-rollback).
