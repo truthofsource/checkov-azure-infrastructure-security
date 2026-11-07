@@ -4,7 +4,7 @@
 
 **Find risky cloud settings before applying them, and track what still needs attention.**
 
-[Business problem](#the-business-problem) · [Strengths](#where-checkov-is-strong) · [Proof](#proof-it-works) · [Commands](docs/COMMANDS.md)
+[Business problem](#the-business-problem) · [Strengths](#where-checkov-is-strong) · [Proof](#proof-it-works) · [Commands](docs/COMMANDS.md) · [Step by step](#step-by-step)
 
 ![Local scanner reference](docs/images/01-strengths.png)
 
@@ -17,6 +17,18 @@ The Azure platform has many settings for storage, networking, logging, keys and 
 Use Checkov to examine the Terraform files that describe the cloud resources. Check that the scan completed properly, keep each failed rule visible, and record what evidence or decision is needed next. Do not treat a completed report as permission to release.
 
 **Business outcome:** The recorded platform scan checked 508 resources across 228 inputs: 211 checks passed and 106 failed, with no skipped checks or reading errors. Remaining findings kept their follow-up requirements.
+
+## Step by Step
+
+A short walkthrough of the process, with technical instructions and evidence limits in the sections below.
+
+1. **Select the cloud setup files** — Choose the infrastructure instructions that need review. Record the selected source and scanner version.
+
+2. **Check the settings** — Checkov compares supported settings with its security rules. Its output identifies passed checks, failed checks and any processing problems.
+
+3. **Review each finding** — Decide what a failed rule means for the actual design. Some changes need further evidence, a business decision or cost approval.
+
+4. **Keep the outcome visible** — Preserve unresolved findings and confirm that the scan covered the intended files. This project uses the report for review rather than treating completion as release approval.
 
 ## Where Checkov Is Strong
 
