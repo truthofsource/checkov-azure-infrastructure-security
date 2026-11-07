@@ -114,6 +114,10 @@ Open [the local reference](http://127.0.0.1:8138). It shows strengths, actual pa
 
 The reference workflow is manual-only. Actual platform integration examples are inert files outside .github/workflows. No hosted CI run or deployment was performed to create this project. Do not execute candidate package scripts or expose raw secret candidates while adding security checks.
 
+## Troubleshooting Lessons
+
+A narrow configuration operation could still introduce an unintended runtime setting. Plan review had to be followed by exact service readback and a complete reconciliation check. [Read the incident, evidence and verification](docs/LESSONS-LEARNED.md).
+
 ## Project Guides
 
 | Guide | Purpose |
