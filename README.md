@@ -18,13 +18,24 @@ Use Checkov to examine the Terraform files that describe the cloud resources. Ch
 
 **Business outcome:** The recorded platform scan checked 508 resources across 228 inputs: 211 checks passed and 106 failed, with no skipped checks or reading errors. Remaining findings kept their follow-up requirements.
 
+## Tools Used and What They Do
+
+| Tool or service | What it does | Where it fits |
+| --- | --- | --- |
+| Checkov | Evaluate infrastructure source against defined configuration checks. | Actual IaC scanner; findings are not a live Azure resource inventory. |
+| Terraform | Describe the infrastructure and resolve its intended configuration. | Scanned source; actual plan, service state and functionality need separate evidence. |
+| Azure CLI | Inspect the exact service configuration when a finding needs context. | Operating utility, not an automatic remediation step. |
+| Python and GitHub Actions | Exercise report and policy decisions using fictional inputs. | Public validation is local/manual-only; it does not apply a Terraform fix. |
+
+This retained tool project remains linked from the combined security-scanning portfolio entry. Historical scanner results keep their original target, date and coverage limits.
+
 ## Step by Step
 
 A short walkthrough of the process, with technical instructions and evidence limits in the sections below.
 
-1. **Select the cloud setup files** — Choose the infrastructure instructions that need review. Record the selected source and scanner version.
+1. **Select the cloud setup files (Terraform)** — Choose the infrastructure instructions that need review. Record the selected source and scanner version.
 
-2. **Check the settings** — Checkov compares supported settings with its security rules. Its output identifies passed checks, failed checks and any processing problems.
+2. **Check the settings (Checkov)** — Checkov compares supported settings with its security rules. Its output identifies passed checks, failed checks and any processing problems.
 
 3. **Review each finding** — Decide what a failed rule means for the actual design. Some changes need further evidence, a business decision or cost approval.
 
