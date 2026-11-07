@@ -1,5 +1,7 @@
 # Checkov Infrastructure Security for Azure
 
+> This project is now part of **[Layered Security Testing for an Azure Platform](https://github.com/truthofsource/azure-devsecops-security-scanning)**, which combines Trivy, Checkov, TruffleHog and OWASP ZAP. This repository remains available for existing links and its original evidence.
+
 **Find risky cloud settings before applying them, and track what still needs attention.**
 
 [Business problem](#the-business-problem) · [Strengths](#where-checkov-is-strong) · [Proof](#proof-it-works) · [Commands](docs/COMMANDS.md)
