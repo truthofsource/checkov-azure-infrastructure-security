@@ -10,7 +10,11 @@
 
 ## The Business Problem
 
-The Azure platform has many settings for storage, networking, logging, keys and service reliability. Reviewing them manually is difficult. A failed automated rule also needs context: it may indicate a security issue, a missing requirement or a more expensive design choice.
+The platform's infrastructure defines how databases, document storage, network access, logging and service identities are configured. As more resources are added, reviewing every setting by hand makes it easier for a risky default or missing control to pass unnoticed into a deployment.
+
+An automated failed rule still requires judgment. It may expose a genuine security gap, depend on a service tier the organization has not chosen or flag a design whose protection comes from another verified control. Treating every finding as noise hides work, while treating every recommendation as an immediate purchase or change can add cost and disruption.
+
+The business need was a consistent review of proposed cloud settings, with visible findings, clear ownership and evidence-based follow-up before deciding what to change or release.
 
 ## The Solution
 
